@@ -14,8 +14,6 @@ retry_yes_path = "img/retry_yes.jpg"
 go_room_ok_path = "img/go_room_ok.jpg"
 go_room_path = "img/go_room.jpg"
 
-
-
 def process_quest():
     while True :
         position = find_template_position(quest_13_3_path)
@@ -26,11 +24,13 @@ def process_quest():
             break
         else:
             print("クエスト：飛来せし岩を破壊せよ！を選択できませんでした...再試行します...")
-
+    count = 0
     while True :
         position = find_template_position(go_path)
         if position:
             tap_on_device(position[0], position[1])
+            count += 1
+            print(f"\n{count}回目の処理を開始します")
             print("挑戦ボタンをタップしました")
             time.sleep(13)
             break
@@ -38,7 +38,9 @@ def process_quest():
             print("挑戦ボタンをタップできませんでした...再試行します...")
 
     try:
+        count2 = 1
         while True :
+
             while True:
                 position = find_template_position(quest_rule_path)
                 if position:
@@ -99,6 +101,8 @@ def process_quest():
                 if position:
                     tap_on_device(position[0], position[1])
                     print("はいボタンをタップしました")
+                    count2 += 1
+                    print(f"\n{count2}回目の処理を開始します")
                     time.sleep(15)
                     break
                 else:
