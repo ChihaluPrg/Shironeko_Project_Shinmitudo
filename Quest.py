@@ -40,16 +40,57 @@ def process_quest():
     try:
         count2 = 1
         while True :
-
             while True:
                 position = find_template_position(quest_rule_path)
                 if position:
                     tap_on_device(position[0], position[1])
                     print("クリア条件をタップしました")
-                    time.sleep(17)
+                    time.sleep(20)
                     break
                 else:
                     print("クリア条件をタップできませんでした")
+
+            while True:
+                position = find_template_position(go_room_path)
+                if position:
+                    print("キャラの親密度が上がりました、キャラ変更をしてください")
+                    while True:
+                        position = find_template_position(go_room_ok_path)
+                        if position:
+                            tap_on_device(position[0], position[1])
+                            print("OKボタンをタップしました")
+                            time.sleep(2)
+                            while True:
+                                position = find_template_position(result_ok_path)
+                                if position:
+                                    tap_on_device(position[0], position[1])
+                                    time.sleep(3)
+                                    break
+                                else:
+                                    print("OKボタンをタップできませんでした")
+                            while True:
+                                position = find_template_position(quest_13_3_path)
+                                if position:
+                                    tap_on_device(position[0], position[1])
+                                    print("クエスト：飛来せし岩を破壊せよ！を選択しました")
+                                    time.sleep(2)
+                                    while True:
+                                        user_input = input("キャラ変更が終わったら（y）を押してください: ")
+                                        if user_input.lower() == 'y':
+                                            character_change()
+                                            break
+                                        else:
+                                            print("無効な入力です")
+                                    break
+                                else:
+                                    print("クエスト：飛来せし岩を破壊せよ！を選択できませんでした...再試行します...")
+
+                            break
+                        else:
+                            print("OKボタンをタップできませんでした")
+                    break
+                else:
+                    break
 
             position = find_template_position(item_kouka_path)
             if position:
@@ -65,26 +106,10 @@ def process_quest():
                         print("OKボタンをタップしました")
                         time.sleep(7)
                         item_use()
-                        break
+                        count2 += 1
+                        continue
                     else:
                         print("OKボタンをタップできませんでした")
-
-            while True:
-                position = find_template_position(go_room_path)
-                if position:
-                    print("キャラの親密度が上がりました")
-                    while True:
-                        position = find_template_position(go_room_ok_path)
-                        if position:
-                            tap_on_device(position[0], position[1])
-                            print("OKボタンをタップしました")
-                            time.sleep(2)
-                            break
-                        else:
-                            print("OKボタンをタップできませんでした")
-                    break
-                else:
-                    break
 
             while True:
                 position = find_template_position(retry_path)
@@ -164,7 +189,29 @@ def item_use():
             if position:
                 tap_on_device(position[0], position[1])
                 print("クリア条件をタップしました")
-                time.sleep(17)
+                time.sleep(20)
+                break
+            else:
+                print("クリア条件をタップできませんでした")
+
+def character_change():
+
+    while True :
+        position = find_template_position(go_path)
+        if position:
+            tap_on_device(position[0], position[1])
+            print("挑戦ボタンをタップしました")
+            break
+        else:
+            print("挑戦ボタンをタップできませんでした...再試行します...")
+
+    while True:
+        while True:
+            position = find_template_position(quest_rule_path)
+            if position:
+                tap_on_device(position[0], position[1])
+                print("クリア条件をタップしました")
+                time.sleep(20)
                 break
             else:
                 print("クリア条件をタップできませんでした")
