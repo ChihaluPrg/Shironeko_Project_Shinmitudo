@@ -49,7 +49,6 @@ def process_quest():
                     break
                 else:
                     print("クリア条件をタップできませんでした")
-
             while True:
                 position = find_template_position(go_room_path)
                 if position:
@@ -60,56 +59,34 @@ def process_quest():
                             tap_on_device(position[0], position[1])
                             print("OKボタンをタップしました")
                             time.sleep(2)
-                            while True:
-                                position = find_template_position(result_ok_path)
-                                if position:
-                                    tap_on_device(position[0], position[1])
-                                    time.sleep(3)
-                                    break
-                                else:
-                                    print("OKボタンをタップできませんでした")
-                            while True:
-                                position = find_template_position(quest_13_3_path)
-                                if position:
-                                    tap_on_device(position[0], position[1])
-                                    print("クエスト：飛来せし岩を破壊せよ！を選択しました")
-                                    time.sleep(2)
-                                    while True:
-                                        user_input = input("キャラ変更が終わったら（y）を押してください: ")
-                                        if user_input.lower() == 'y':
-                                            character_change()
-                                            break
-                                        else:
-                                            print("無効な入力です")
-                                    break
-                                else:
-                                    print("クエスト：飛来せし岩を破壊せよ！を選択できませんでした...再試行します...")
-
+                            shinmitudo_up()
                             break
                         else:
                             print("OKボタンをタップできませんでした")
-                    break
+                    continue
                 else:
                     break
 
-            position = find_template_position(item_kouka_path)
-            if position:
-                print("アイテム効果は切れていません")
-                time.sleep(2)
-            else:
-                print("アイテム効果が切れている為、アイテムを使用する処理を行います")
-                time.sleep(3)
-                while True:
-                    position = find_template_position(result_ok_path)
-                    if position:
-                        tap_on_device(position[0], position[1])
-                        print("OKボタンをタップしました")
-                        time.sleep(7)
-                        item_use()
-                        count2 += 1
-                        continue
-                    else:
-                        print("OKボタンをタップできませんでした")
+            while True:
+                position = find_template_position(item_kouka_path)
+                if position:
+                    print("アイテム効果は切れていません")
+                    time.sleep(2)
+                else:
+                    print("アイテム効果が切れている為、アイテムを使用する処理を行います")
+                    time.sleep(3)
+                    while True:
+                        position = find_template_position(result_ok_path)
+                        if position:
+                            tap_on_device(position[0], position[1])
+                            print("OKボタンをタップしました")
+                            time.sleep(7)
+                            item_use()
+                            count2 += 1
+                            break
+                        else:
+                            print("OKボタンをタップできませんでした")
+                    continue
 
             while True:
                 position = find_template_position(retry_path)
@@ -184,18 +161,41 @@ def item_use():
             print("挑戦ボタンをタップできませんでした...再試行します...")
 
     while True:
-        while True:
-            position = find_template_position(quest_rule_path)
-            if position:
-                tap_on_device(position[0], position[1])
-                print("クリア条件をタップしました")
-                time.sleep(20)
-                break
-            else:
-                print("クリア条件をタップできませんでした")
+        position = find_template_position(quest_rule_path)
+        if position:
+            tap_on_device(position[0], position[1])
+            print("クリア条件をタップしました")
+            time.sleep(20)
+            break
+        else:
+            print("クリア条件をタップできませんでした")
 
-def character_change():
+def shinmitudo_up():
 
+    while True:
+        position = find_template_position(result_ok_path)
+        if position:
+            tap_on_device(position[0], position[1])
+            time.sleep(3)
+            break
+        else:
+            print("OKボタンをタップできませんでした")
+    while True:
+        position = find_template_position(quest_13_3_path)
+        if position:
+            time.sleep(3)
+            tap_on_device(position[0], position[1])
+            print("クエスト：飛来せし岩を破壊せよ！を選択しました")
+            time.sleep(2)
+            break
+        else:
+            print("クエスト：飛来せし岩を破壊せよ！を選択できませんでした...再試行します...")
+    while True:
+        user_input = input("キャラ変更が終わったら（y）を押してください: ")
+        if user_input.lower() == 'y':
+            break
+        else:
+            print("無効な入力です")
     while True :
         position = find_template_position(go_path)
         if position:
@@ -206,12 +206,11 @@ def character_change():
             print("挑戦ボタンをタップできませんでした...再試行します...")
 
     while True:
-        while True:
-            position = find_template_position(quest_rule_path)
-            if position:
-                tap_on_device(position[0], position[1])
-                print("クリア条件をタップしました")
-                time.sleep(20)
-                break
-            else:
-                print("クリア条件をタップできませんでした")
+        position = find_template_position(quest_rule_path)
+        if position:
+            tap_on_device(position[0], position[1])
+            print("クリア条件をタップしました")
+            time.sleep(20)
+            break
+        else:
+            print("クリア条件をタップできませんでした")
