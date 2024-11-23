@@ -1,3 +1,5 @@
+import keyboard
+
 from OpenCV2 import *
 
 quest_13_3_path = "img/quest_13_3.jpg"
@@ -214,3 +216,8 @@ def shinmitudo_up():
             break
         else:
             print("クリア条件をタップできませんでした")
+
+def wait_for_key(key):
+    print(f"準備が完了したら 「'{key}'」キーを押してください")
+    keyboard.wait(key)
+    print(f"プログラムを開始します。")
