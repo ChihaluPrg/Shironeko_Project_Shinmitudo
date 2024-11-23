@@ -67,26 +67,26 @@ def process_quest():
                 else:
                     break
 
-            while True:
-                position = find_template_position(item_kouka_path)
-                if position:
-                    print("アイテム効果は切れていません")
-                    time.sleep(2)
-                else:
-                    print("アイテム効果が切れている為、アイテムを使用する処理を行います")
-                    time.sleep(3)
-                    while True:
-                        position = find_template_position(result_ok_path)
-                        if position:
-                            tap_on_device(position[0], position[1])
-                            print("OKボタンをタップしました")
-                            time.sleep(7)
-                            item_use()
-                            count2 += 1
-                            break
-                        else:
-                            print("OKボタンをタップできませんでした")
-                    continue
+
+            position = find_template_position(item_kouka_path)
+            if position:
+                print("アイテム効果は切れていません")
+                time.sleep(2)
+            else:
+                print("アイテム効果が切れている為、アイテムを使用する処理を行います")
+                time.sleep(3)
+                while True:
+                    position = find_template_position(result_ok_path)
+                    if position:
+                        tap_on_device(position[0], position[1])
+                        print("OKボタンをタップしました")
+                        time.sleep(7)
+                        item_use()
+                        count2 += 1
+                        break
+                    else:
+                        print("OKボタンをタップできませんでした")
+                continue
 
             while True:
                 position = find_template_position(retry_path)
